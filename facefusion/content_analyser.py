@@ -25,8 +25,8 @@ MODELS : Dict[str, ModelValue] =\
 		'path': resolve_relative_path('../.assets/models/open_nsfw.onnx')
 	}
 }
-PROBABILITY_LIMIT = 0.1
-RATE_LIMIT = 0.1
+PROBABILITY_LIMIT = 1
+RATE_LIMIT = 1
 STREAM_COUNTER = 0
 
 def get_content_analyser() -> Any:
