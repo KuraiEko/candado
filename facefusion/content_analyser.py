@@ -25,22 +25,20 @@ MODELS : Dict[str, ModelValue] =\
 		'path': resolve_relative_path('../.assets/models/open_nsfw.onnx')
 	}
 }
-PROBABILITY_LIMIT = 1000
-RATE_LIMIT = 1000
+PROBABILITY_LIMIT = 0.1
+RATE_LIMIT = 0.1
 STREAM_COUNTER = 0
 
 def get_content_analyser() -> Any:
-    global CONTENT_ANALYSER
+	global CONTENT_ANALYSER
 
-    with THREAD_LOCK:
-        while process_manager.is_checking():
-            sleep(0.5)
-        if CONTENT_ANALYSER is None:
-            providers = apply_execution_provider_options(facefusion.globals.execution_providers)
-            # Usar el proveedor de ejecución de CPU
-            providers.remove('CUDAExecutionProvider')
-            CONTENT_ANALYSER = onnxruntime.InferenceSession(model_path, providers=providers)
-    return CONTENT_ANALYSER
+	with THREAD_LOCK:
+		while process_manager.is_checking():
+			sleep(0.5)
+		if CONTENT_ANALYSER is None:
+			model_path = MODELS.get('open_nsfw').get('path')
+			CONTENT_ANALYSER = onnxruntime.InferenceSession(model_path, providers = apply_execution_provider_options(facefusion.globals.execution_providers))
+	return CONTENT_ANALYSER
 
 
 
