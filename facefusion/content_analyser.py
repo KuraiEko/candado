@@ -25,8 +25,8 @@ MODELS : ModelSet =\
 		'path': resolve_relative_path('../.assets/models/open_nsfw.onnx')
 	}
 }
-PROBABILITY_LIMIT = 0.8
-RATE_LIMIT = 20
+PROBABILITY_LIMIT = 0.80
+RATE_LIMIT = 10
 STREAM_COUNTER = 0
 
 
