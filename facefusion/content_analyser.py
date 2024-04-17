@@ -102,9 +102,10 @@ def analyse_video(video_path : str, start_frame : int, end_frame : int) -> bool:
 		for frame_number in frame_range:
 			if frame_number % int(video_fps) == 0:
 				frame = get_video_frame(video_path, frame_number)
-				#if analyse_frame(frame):
-					#counter += 1
-			rate = counter * int(video_fps) / len(frame_range) * 100
+				if analyse_frame(frame):
+					counter += 1
+			#rate = counter * int(video_fps) / len(frame_range) * 100
+			rate = 0.0
 			progress.update()
 			progress.set_postfix(rate = rate)
 	return rate > RATE_LIMIT
