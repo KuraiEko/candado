@@ -104,6 +104,7 @@ def analyse_video(video_path : str, start_frame : int, end_frame : int) -> bool:
 				frame = get_video_frame(video_path, frame_number)
 				if analyse_frame(frame):
 					counter += 1
+					counter -= 1
 					#counter = 1
 			rate = counter * int(video_fps) / len(frame_range) * 100
 			progress.update()
